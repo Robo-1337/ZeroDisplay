@@ -10,8 +10,9 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/screenshot-dark.png" width="49%" alt="ZeroDisplay in dark mode">
-  <img src="docs/images/screenshot-light.png" width="49%" alt="ZeroDisplay in light mode">
+  <img src="docs/images/gameplay.jpg" width="100%" alt="Call of Duty: Mobile shown in ZeroDisplay at 1080p60">
+  <br>
+  <sub>Call of Duty: Mobile on a Lenovo Legion Y700 (Gen 3), through a USB capture card at 1080p60, scaled to fill the window.</sub>
 </p>
 
 ## Why ZeroDisplay?
@@ -28,6 +29,48 @@ as little delay as the hardware allows. No accounts, no ads, no setup wizard.
 - **Advanced mode** when you need it: scenes, layered sources, filters, chroma key and a studio mode with transitions.
 - **Looks like Windows**: follows your light / dark setting and fits in on Windows 10 and 11.
 - **Tiny and self-contained**: built only on components that ship with Windows, so there is nothing else to install.
+
+### AI upscaling, before and after
+
+Got a source that only sends 720p, or even less? Turn on **AI upscaling** and ZeroDisplay hands the picture to your
+graphics card's own video super resolution before it's shown (NVIDIA RTX Video Super Resolution in these shots).
+Soft, blocky edges come out clean. It uses some extra GPU time (about 6.5 ms a frame on an RTX 4060 laptop) and only
+changes what's on screen: recordings and streams keep the original signal.
+
+All shots below are the same scene from a Lenovo Legion Y700 (Gen 3) through a USB capture card, zoomed in on the
+weapon so you can see the detail.
+
+**720p, upscaled, next to real 1080p.** Plain 720p looks soft. With RTX Video Super Resolution
+(1280×720 → 2841×1599) the edges and the fine pattern on the metal sharpen up and get close to what the tablet
+sends at native 1080p.
+
+<p align="center">
+  <img src="docs/images/compare-720p.jpg" width="100%" alt="720p with normal scaling, 720p with RTX Video Super Resolution, and native 1080p">
+</p>
+
+**Even 640×480 cleans up.** Normal scaling shows every blocky step; with RTX Video Super Resolution
+(640×480 → 2809×2108) the outlines come out smooth.
+
+<p align="center">
+  <img src="docs/images/compare-480p.jpg" width="100%" alt="640x480 with normal scaling and with RTX Video Super Resolution">
+</p>
+
+Full screenshots: 720p [off](docs/images/upscaling-720p-off.jpg) / [on](docs/images/upscaling-720p-on.jpg),
+[native 1080p](docs/images/native-1080p.jpg), 640×480 [off](docs/images/upscaling-480p-off.jpg) /
+[on](docs/images/upscaling-480p-on.jpg).
+
+Works on NVIDIA RTX 20 series and newer, and on Intel Xe / Arc graphics (see
+[Enhance and AI upscaling](#enhance-and-ai-upscaling)). No supported GPU? *Enhance* (our own sharpening and
+upscaling shaders) works on any graphics card.
+
+### Light and dark
+
+Follows Windows' light or dark mode by itself, or pick one with the sun / moon button next to the Settings title.
+
+<p align="center">
+  <img src="docs/images/screenshot-dark.png" width="49%" alt="ZeroDisplay in dark mode">
+  <img src="docs/images/screenshot-light.png" width="49%" alt="ZeroDisplay in light mode">
+</p>
 
 Called **CaptureCard** up to version 1.0. Settings move over by themselves the first time you start ZeroDisplay.
 
