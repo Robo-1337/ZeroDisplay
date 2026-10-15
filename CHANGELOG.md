@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to ZeroDisplay (called CaptureCard up to 1.0). Newest first. Dates are when the work was done.
+All notable changes to ZeroDisplay. Newest first. Dates are when the work was done.
 
 ## [Unreleased]
 
@@ -10,16 +10,10 @@ Nothing yet.
 
 The first public release, open source under the MIT License.
 
-### New name, new look (desktop)
-- **CaptureCard is now ZeroDisplay**, with a new logo: the *Raster Z*, a display's scan path (across, the diagonal
+### New look (desktop)
+- **New logo**: the *Raster Z*, a display's scan path (across, the diagonal
   retrace back, across again) drawn as a Z. New app icon, logo and wordmark in the top bar, the welcome note and
   Settings > General.
-- **Moving over is automatic**: the settings folder `%APPDATA%\CaptureCard` moves to `%APPDATA%\ZeroDisplay` at the
-  first start (it stays where it is if it can't be moved). Portable copies keep working: the settings next to the
-  exe are found whatever the exe is called. New recordings and screenshots go to `Videos\ZeroDisplay` and
-  `Pictures\ZeroDisplay`; the ones already in the CaptureCard folders stay there and still count for *Keep
-  recordings under*. Settings exported from 1.0 still import. Casting asks once more for the firewall rule (it
-  names the new exe) and removes the old one at the same time.
 - **New style, a blend of Windows 10 and 11**: solid accent blue for what is switched on, a lighter blue for
   markers, a hover light that follows the mouse, a big Settings title, sentence-case section headings with a
   marker, each open section on a card, Windows 10 switches and sliders, underlined choices, Windows 11 menus,
@@ -61,7 +55,7 @@ The first full release of the desktop app. A summary of everything since 0.4.0; 
   and any website open in a browser on that network could pull the browser viewer's stream in the background. Now
   the LAN stream and the browser viewer go only to viewers who give the 6-digit PIN shown in Settings ▸ Network
   (random, encrypted for this Windows user, never written to the log, not exported; *New PIN* makes everyone type
-  the new one, and viewers with the old one are disconnected). A CaptureCard receiver shows "The sharing PC asks
+  the new one, and viewers with the old one are disconnected). A ZeroDisplay receiver shows "The sharing PC asks
   for a PIN" with a box to type it and remembers it per PC (encrypted); the browser page asks once and remembers it
   for that address. The Wireless tab's QR code carries the PIN (the page takes it out of the address bar). Wrong
   guesses: 5 different wrong PINs a minute lock an address for a minute, 30 a minute from anywhere make everyone
@@ -139,7 +133,7 @@ The first full release of the desktop app. A summary of everything since 0.4.0; 
   deleted while recording", or which parts) instead of "Saved".
 - **Closing hung with this PC's own Wi-Fi on**: beside the own network the cast receiver can't start (one Wi-Fi card
   can't do both), but the half-started receiver was kept; once a phone had joined and left the network, releasing
-  it while closing never returned, so CaptureCard stayed "not responding" (keeping the card busy and the network up)
+  it while closing never returned, so ZeroDisplay stayed "not responding" (keeping the card busy and the network up)
   and the exit watchdog never started. Now a receiver that can't start is let go at once, closing stops the own
   network first, and each wireless step gets 5 s before the exit goes on without it. Tested with the S22 joining and
   leaving: closes in under 3 s.
@@ -284,7 +278,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - `/analyze`: the taskbar overlay call (no icon removes the overlay, as documented) is marked as intended.
 - Verification after all of this: 37-test regression set PASS (26 files, 0 decode errors), ASan 28 runs clean, `/analyze`
   nothing new, clean build 0 warnings, only Windows DLLs. Footprint: exe 2.11 MB (1.88 MB before the 16 QoL round).
-- Found while testing, not a CaptureCard bug: the capture card once stopped delivering sound until it was replugged
+- Found while testing, not a ZeroDisplay bug: the capture card once stopped delivering sound until it was replugged
   (recordings then get a silent track, the replay buffer none), and it came back at USB 2 speed (1080p50 NV12).
 
 ### Added / changed (round of 2026-10-12: the 16 QoL ideas, part 2)
@@ -310,13 +304,13 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - **Sync on screen** (Settings ▸ Audio, replaces "Audio delay"): one slider, *Picture earlier* … *Sound earlier*, 0 in
   the middle, per device. Left: the sound waits (as before, up to 300 ms). Right (new, up to 300 ms): **the picture
   waits for late sound**, e.g. Bluetooth headphones: the last frames stay on the GPU and the one from X ms ago is
-  shown ("adds X ms to the picture: fine for watching, not for playing through CaptureCard", with the GPU memory it
+  shown ("adds X ms to the picture: fine for watching, not for playing through ZeroDisplay", with the GPU memory it
   takes, about 87 MB for 150 ms of 1080p60). Screen and speakers only: recordings and sharing are never shifted.
   Advanced mode: only the sound can wait (says so). F3 shows "picture waits 150 ms, shown picture 151 ms old".
   Nothing is kept while it's off. Test flag: `--sync <ms>`.
 
 ### Added / changed (round of 2026-10-11 late: the 16 QoL ideas, part 1)
-- **Single instance**: opening CaptureCard again brings the running window to the front (starts with options, e.g. a
+- **Single instance**: opening ZeroDisplay again brings the running window to the front (starts with options, e.g. a
   second instance watching the network stream, are still allowed).
 - **Closing ends everything**: shutdown waits briefly for background jobs and names any that hang; if final cleanup
   ever takes longer than 8 s the process ends anyway (found: a process that stayed after "Exit"). Tested with
@@ -405,7 +399,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   keys*. Folders: *Default*.
 - **Settings ▸ General ▸ Export / Import / Reset all**: Export writes settings and scenes to one file (without the
   window position, this PC's learned encoder results and the own Wi-Fi password, which only works for this Windows
-  user). Import and Reset all ask first, apply while CaptureCard closes (after its last save) and start it again;
+  user). Import and Reset all ask first, apply while ZeroDisplay closes (after its last save) and start it again;
   Reset keeps the scenes. Test flags `--export-settings`, `--import-settings`, `--reset-settings` (no restart).
 - **Ask before closing** (Settings ▸ General, on by default): closing while recording, while someone watches what
   you share, or with replay footage that wasn't saved asks first and says which (Cancel keeps it running).
@@ -413,7 +407,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   recording starts / stops and when a replay or clip is saved.
 - **Custom hotkeys** (Settings ▸ Hotkeys): record, save replay, screenshot, mute, clean output, full screen,
   statistics and mini player each get a key in the window and a global key (works in any app). Click, press the new
-  key (Esc cancels, Backspace removes). A key belongs to one action (taken over with a note); keys CaptureCard uses
+  key (Esc cancels, Backspace removes). A key belongs to one action (taken over with a note); keys ZeroDisplay uses
   itself (Esc, Tab, Enter, Space, arrows, 1-9, Ctrl+Z / Y) are refused; global keys need Ctrl or Alt; a global key
   another app owns shows "taken". Tooltips and labels show the chosen keys. `[Hotkeys] <Action>`, `<Action>Global`.
   The "Global hotkeys" switch moved here.
@@ -428,7 +422,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
     0.2 s white flash, on by default).
   - **Stop recording below** 1 / 2 / 5 / 10 / 20 GB free (was a fixed 1 GB), with today's free space.
   - **Keep recordings under** 50 / 100 / 250 / 500 GB (off by default; asks before turning on): above it, the oldest
-    recordings, replays and clips *CaptureCard made* (listed in `recordings.txt` next to the settings, UTF-8) go to
+    recordings, replays and clips *ZeroDisplay made* (listed in `recordings.txt` next to the settings, UTF-8) go to
     the Recycle Bin; other files in the folder are never touched, the newest is never removed, and a file too big
     for the Recycle Bin makes Windows ask before anything is deleted for good. Tested with `--keep-test-mb`.
 - **Each device in its own window**: the device menu offers "Open <device> in a new window" for every device not
@@ -520,7 +514,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   the card's MJPEG: compressed quality, more latency).
 
 ### Security / safety (desktop review, 2026-10-11)
-- **Network stream receiver** (streams from another CaptureCard / the phone): a sender declared each frame's size and
+- **Network stream receiver** (streams from another ZeroDisplay / the phone): a sender declared each frame's size and
   it was allocated before any check (up to 4 GB per frame, many frames); now sizes must be consistent and ≤ 32 MB,
   at most 64 frames in flight; names from the network are always terminated (they could be read past their end);
   absurd stream descriptions (0 / > 16384 px, > 1000 fps) are ignored. New fuzz test (20 000 malformed packets) runs
@@ -571,7 +565,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 ### Changed (desktop: own Wi-Fi, 2026-10-11)
 - **The network password is hidden by default** (dots) with a Show / Hide button; the "1 Join" QR code (it contains
   the password) is hidden with it until shown. Not saved: hidden again on the next start.
-- Tested: **the Android app's Cast to PC over the PC's own network** (S22 joined "CaptureCard-Test"): found by
+- Tested: **the Android app's Cast to PC over the PC's own network** (S22 joined "ZeroDisplay-Test"): found by
   discovery, 59.9 fps, 0 lost, **89 ms median** glass-to-PC (router: 64 ms; this laptop's one Wi-Fi card shares its
   airtime between the router and its own network). The Wireless page now says only Smart View / Win+K mirroring pauses
   while the own network is on.
@@ -628,14 +622,14 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   the card. Tested on the S22 with the card and a Switch: 1080p60 YUY2, 60 fps shown, with sound.
 
 ### Added (Android version started, 2026-10-06)
-- **CaptureCard for Android** (`android/`, see `ANDROID_HANDOFF.md`): built by `android\build.ps1` with the SDK's
+- **ZeroDisplay for Android** (`android/`, see `ANDROID_HANDOFF.md`): built by `android\build.ps1` with the SDK's
   own tools (no Gradle, no AndroidX, no third-party code). First feature: **Cast to PC**: the phone's screen and
-  sound go to CaptureCard on a PC in the desktop app's own LAN stream format (the PC lists "Network: <phone>").
+  sound go to ZeroDisplay on a PC in the desktop app's own LAN stream format (the PC lists "Network: <phone>").
   Measured on a Galaxy S22: phone screen → PC **64 ms** median (Smart View: 437 ms), 60 fps, rotation followed,
   recordings A/V −20…+14 ms.
 - **Android: capture card driver** (own UVC driver over the Java USB API; the card streams over bulk), written and
   unit-tested on the PC against the card's real descriptors (15/15); **capture screen** (GL ES renderer, 60 fps),
-  **sound** (the card's USB input), **recording** (H.264 + AAC to Movies/CaptureCard, A/V −5 ms) and
+  **sound** (the card's USB input), **recording** (H.264 + AAC to Movies/ZeroDisplay, A/V −5 ms) and
   **screenshots**, tested on the S22 with a built-in test pattern. The first run with the card itself waits for the
   card to be moved to the phone.
 - **Android: crash-safe recordings** (own fragmented MP4 writer; killed mid-recording → plays to its last second),
@@ -668,7 +662,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 
 ### Added (wireless streaming W2 + W3, 2026-10-06)
 - **This PC's own Wi-Fi** (Wireless tab ▸ *Create a Wi-Fi network for phones*): a Wi-Fi Direct network in "legacy"
-  mode, a normal WPA2 network named `CaptureCard-XXXX` with a random password (both editable, saved), that exists
+  mode, a normal WPA2 network named `ZeroDisplay-XXXX` with a random password (both editable, saved), that exists
   only while it is on; nothing is stored in Windows. If Wi-Fi Direct can't start, Windows Mobile Hotspot is used
   instead and its previous name / password are put back when it is turned off (verified: off and restored).
   Status shows how many devices joined. Tested with the Galaxy S22: joins at 5 GHz (626 Mbps link), the browser
@@ -683,7 +677,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - **QR codes** (own encoder, byte mode, level M, versions 1–10, checked with an independent decoder and by decoding
   the app's own screenshots): the browser viewer address under *Watch on phones and tablets* (with a sharing toggle),
   and on the own network *1 Join* (Wi-Fi join code) + *2 Open* (the welcome page).
-- **Windows Firewall check** (read-only): the Wireless tab knows whether CaptureCard may receive on public networks
+- **Windows Firewall check** (read-only): the Wireless tab knows whether ZeroDisplay may receive on public networks
   and shows *Allow through Windows Firewall* before anything fails (casts and phones on the own network both arrive
   over Wi-Fi Direct, a public network). One Windows administrator prompt; once allowed, both work.
 
@@ -715,12 +709,12 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - A cast becomes a source "Wireless: <device>" like the capture card (Simple, multiview, Advanced scenes, recording,
   replay, sharing). Simple switches to a new cast; if it never shows a picture the previous device comes back.
 - **Cast picture**: MediaPlayer frame server → our BGRA textures → the normal GPU path. **Cast sound** goes through our
-  mixer and recordings via an own audio effect (`CaptureCard.CastAudioTap`, registration-free WinRT served by the exe
+  mixer and recordings via an own audio effect (`ZeroDisplay.CastAudioTap`, registration-free WinRT served by the exe
   itself, declared in app.manifest), released at the player's presentation clock. Verified with a test file
   (`--media-test`): picture correct, sound recorded. With real casts: see the W2 + W3 entry above (A/V about −10 ms).
-- **Windows Firewall**: the cast's video comes in over the Wi-Fi Direct link, a "public" network where CaptureCard is
+- **Windows Firewall**: the cast's video comes in over the Wi-Fi Direct link, a "public" network where ZeroDisplay is
   not allowed by default. The tab detects "connected but no picture" and offers *Allow casting through Windows
-  Firewall* (one Windows administrator prompt that adds an inbound rule for CaptureCard on public wireless networks).
+  Firewall* (one Windows administrator prompt that adds an inbound rule for ZeroDisplay on public wireless networks).
 - Build: app.rc is rebuilt when app.manifest / app.ico change (they were embedded stale before).
 
 ### Added / changed (2026-10-06, open items + wireless round)
@@ -761,7 +755,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   `--encode-convert-vp`, `--settings-scroll` also scrolls the Advanced panel.
 - Test tools: `--test-pattern` (synthetic 1080p60 source with frame counter, flash square, moving box, 1 kHz blips),
   `--profile-dir` + `--portable-toggle-test` (exercise Settings ▸ Portable without touching the real profile; passed).
-- Miracast receiver spike (`--wireless`): Smart View on the S22 finds and connects to "CaptureCard (<PC>)"; the picture
+- Miracast receiver spike (`--wireless`): Smart View on the S22 finds and connects to "ZeroDisplay (<PC>)"; the picture
   is blocked by Windows Firewall on the Wi-Fi Direct (Public) link until the user allows it (WIRELESS_HANDOFF.md).
 
 ### Added (encoding hardware, 2026-10-05)
@@ -796,7 +790,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - **Portable mode now keeps recordings and screenshots next to the exe too**: `Videos` (recordings, clips, replays,
   trims) and `Screenshots`, next to `settings.ini`. A recording folder you chose yourself still wins.
 - **Settings ▸ General ▸ Portable** turns portable mode on or off. It moves `settings.ini` / `scenes.ini` next to the
-  exe or back to `%APPDATA%\CaptureCard`, and says so if the exe's folder can't be written (e.g. Program Files).
+  exe or back to `%APPDATA%\ZeroDisplay`, and says so if the exe's folder can't be written (e.g. Program Files).
 
 ### Changed (latency, measured with the live Switch picture, 1080p60)
 - **Pressing record never freezes the picture any more.** The recording encoder is created on a worker thread, with
@@ -961,7 +955,7 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
   edges (stays 16:9), double-click or right-click closes. Own swap chain on the same GPU device, drawn right after
   the main window's present so it never adds latency there (`AppMini.cpp`, `Renderer::CreateOutput`). `--mini`.
 - **Lag check** (Settings ▸ General ▸ *Measure capture latency*): flashes a full-screen window white 10× on the
-  monitor that isn't showing CaptureCard (the one wired to the card), stamps when each flash was presented
+  monitor that isn't showing ZeroDisplay (the one wired to the card), stamps when each flash was presented
   (`DwmFlush`) and finds the first captured frame showing it (per-frame 8×8 centre brightness, async readback,
   tagged with the frame's arrival time). Reports average / median / min / max. Esc or any key/click on the flash
   window stops. `--lagcheck-sim <ms>` simulates a capture chain for testing.
@@ -1105,11 +1099,11 @@ each step with the new `t:shot:N` step; the real mouse is ignored and never hidd
 - Multiview: all devices side by side; click a tile to make it active (its audio plays).
 - Simple-mode UI (Direct2D/DirectWrite immediate-mode toolkit): auto-hiding top bar with device / format /
   audio dropdowns, volume + level meter, mute, screenshot, multiview, stats, settings, fullscreen.
-- Settings panel, INI settings (`%APPDATA%\CaptureCard\settings.ini`, portable mode if next to exe), log file.
+- Settings panel, INI settings (`%APPDATA%\ZeroDisplay\settings.ini`, portable mode if next to exe), log file.
 - Statistics overlay (F3): fps, skipped frames, arrival→present and capture→present latency, colour space,
   audio buffer/min/reserve/drift/underruns, output callback jitter, UI and present cost.
 - "No signal" detection, including cards that keep sending black frames (async 16×9 GPU probe).
-- Screenshots to `Pictures\CaptureCard` (WIC PNG).
+- Screenshots to `Pictures\ZeroDisplay` (WIC PNG).
 - Latency setup: MMCSS (Pro Audio / Games), 1 ms timer, EcoQoS power throttling disabled, above-normal priority.
 - Self-test mode (`--selftest N [--cycle] [--multiview] [--exclusive] [--shot f] [--ui-shot f] [--device x]`);
   command-line flags never change saved settings.

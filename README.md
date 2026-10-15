@@ -72,8 +72,6 @@ Follows Windows' light or dark mode by itself, or pick one with the sun / moon b
   <img src="docs/images/screenshot-light.png" width="49%" alt="ZeroDisplay in light mode">
 </p>
 
-Called **CaptureCard** up to version 1.0. Settings move over by themselves the first time you start ZeroDisplay.
-
 ## Download
 
 Grab `ZeroDisplay-<version>-win-x64.zip` from the [latest release](../../releases/latest), unzip it anywhere and run
